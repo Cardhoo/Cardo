@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cardo Links</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: float 4s infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(-100vh) scale(2);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            width: 90%;
+            margin: 2rem auto;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile {
+            margin-bottom: 2rem;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .profile img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            object-fit: cover;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+            50% {
+                box-shadow: 0 4px 25px rgba(255,255,255,0.5);
+            }
+            100% {
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            }
+        }
+
+        .profile h1 {
+            color: white;
+            margin: 1rem 0;
+            font-size: 1.8rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .link-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .link-card i {
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .donation-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .donation-card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 1rem;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #333;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .donation-card:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .donation-card i {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            margin-top: 2rem;
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-icon {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2) rotate(5deg);
+        }
+
+        .donation-label {
+            font-weight: bold;
+            color: white;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <script>
+        function createBubbles() {
+            const body = document.querySelector('body');
+            for(let i = 0; i < 20; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                bubble.style.left = `${Math.random() * 100}%`;
+                bubble.style.width = `${Math.random() * 50 + 20}px`;
+                bubble.style.height = bubble.style.width;
+                bubble.style.animationDuration = `${Math.random() * 4 + 2}s`;
+                bubble.style.animationDelay = `${Math.random() * 2}s`;
+                body.appendChild(bubble);
+            }
+        }
+        window.onload = createBubbles;
+    </script>
+    <div class="container">
+        <div class="profile">
+            <img src="https://yt3.googleusercontent.com/snh6ypQ_3laR5vLVpAN_4KpaQ_nFmcio5b6E5xd55Mz8NAOUAGy_cPRFkDqjCS_-agR0Yz7V0g=s160-c-k-c0x00ffffff-no-rj" alt="Cardo Profile Picture">
+            <h1>Cardo</h1>
+        </div>
+
+        <div class="donation-label">Donasi</div>
+        <div class="donation-options">
+            <!-- Sociabuzz -->
+            <a href="https://sociabuzz.com/cardoganz/tribe" class="donation-card" target="_blank">
+                <i class="fas fa-hand-holding-heart"></i>
+                Sociabuzz
+            </a>
+
+            <!-- Saweria -->
+            <a href="https://saweria.co/Crdho" class="donation-card" target="_blank">
+                <i class="fas fa-gift"></i>
+                Saweria
+            </a>
+        </div>
+
+        <div class="links">
+            <!-- Link Discord -->
+            <a href="https://discord.gg/UKD8TmV3Tu" class="link-card" target="_blank">
+                <i class="fab fa-discord"></i>
+                Join Discord Server
+            </a>
+
+            <!-- Link YouTube -->
+            <a href="https://youtube.com/@cardoo_ganz?si=OytXK3SpHMgNPc1f" class="link-card" target="_blank">
+                <i class="fab fa-youtube"></i>
+                YouTube Channel
+            </a>
+
+            <!-- Link Roblox Private Server -->
+            <a href="https://www.roblox.com/share?code=15419294eb032049bd186244a5d41a4d&type=Server" class="link-card" target="_blank">
+                <i class="fas fa-gamepad"></i>
+                Private Server Fisch
+            </a>
+        </div>
+
+        <div class="social-links">
+            <a href="https://youtube.com/@cardoo_ganz?si=OytXK3SpHMgNPc1f" class="social-icon" target="_blank">
+                <i class="fab fa-youtube"></i>
+            </a>
+            <a href="https://www.roblox.com/share?code=15419294eb032049bd186244a5d41a4d&type=Server" class="social-icon" target="_blank">
+                <i class="fas fa-gamepad"></i>
+            </a>
+            <a href="https://discord.gg/UKD8TmV3Tu" class="social-icon" target="_blank">
+                <i class="fab fa-discord"></i>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
